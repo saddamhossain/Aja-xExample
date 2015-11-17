@@ -1,0 +1,45 @@
+<!DOCTYPE  html>
+<html>
+	<head>
+		<title> Load </title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	</head>
+
+<body>
+
+<input type = "button" id = "btnAjax" value = "Load Data" />
+
+ <div id="dvAjax"> </div>
+ 
+
+ 
+ 	<script type="text/javascript">
+		$(document).ready(function(){
+			var ajaxUrl = "Json.htm";
+            $("#btnAjax").click(function () {
+                $("#dvAjax").html(ajax_load);
+
+
+                $.ajax({
+                    type: "GET", 		//GET or POST or PUT or DELETE verb
+                    url: ajaxUrl, 		// Location of the service
+                    data: "", 		//Data sent to server
+                    contentType: "",		// content type sent to server
+                    dataType: "json", 	//Expected data format from server
+                    processdata: true, 	//True or False
+                    success: function (json) {//On Successful service call
+                        var result = json.name;
+                        $("#dvAjax").html(result);
+                    },
+                    error: ServiceFailed	// When Service call fails
+                });
+
+                return false;
+            });
+
+
+		});
+		
+	</script>
+</body>	
+</html>
